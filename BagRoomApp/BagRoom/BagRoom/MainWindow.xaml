@@ -9,8 +9,11 @@
 
     <Grid>
         <TextBlock HorizontalAlignment="Left" Margin="350,20,0,0" TextWrapping="Wrap" Text="Bag Room Lookup" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Height="25" Margin="270,50,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="250"/>
-        <DataGrid Name="bagRoomGrid" HorizontalAlignment="Center" Height="339" Margin="0,80,0,0" VerticalAlignment="Center" Width="792"/>
-        <Button Click="Window_Loaded" Content="Submit" HorizontalAlignment="Left" Margin="525,50,0,0" VerticalAlignment="Top" Width="75"/>
+        <TextBox Name="target" HorizontalAlignment="Left" Height="25" Margin="270,50,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="250"/>
+        <DataGrid Name="bagRoomGrid" HorizontalAlignment="Center" Height="300" Margin="0,119,0,0" VerticalAlignment="Center" Width="792"/>
+        <Button Click="showTable" Content="Show Table" HorizontalAlignment="Left" Margin="270,80,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Click="Window_Loaded" Content="Lookup" HorizontalAlignment="Left" Margin="525,50,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Click="addPlayer" Content="Add Player" HorizontalAlignment="Left" Margin="345,80,0,0" VerticalAlignment="Top" Width="75"/>
+
     </Grid>
 </Window>

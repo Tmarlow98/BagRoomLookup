@@ -22,9 +22,7 @@ namespace BagRoom
             int bagNumber;
             int.TryParse(bagNum.Text, out bagNumber);
 
-            /*SqlCommand cmd = new SqlCommand("INSERT INTO players(first_name, last_name, bag_id) " +
-                                            "VALUES('"+ firstName +"', '"+ lastName +"', '"+ bagNumber +"')", conn);*/
-            using (SqlConnection conn = new SqlConnection("Data Source=DESKTOP-4TJATUJ\\SQLEXPRESS;Initial Catalog=bagRoom;Integrated Security=True"))
+            using (SqlConnection conn = new SqlConnection("ConnectionString"))
             {
                 try
                 {
@@ -37,10 +35,7 @@ namespace BagRoom
                         cmd.Parameters.AddWithValue("@lastName", lastName);
                         cmd.Parameters.AddWithValue("@bagID", bagNumber);
 
-
-
                         cmd.ExecuteNonQuery();
-                        this.Close();
                     }
                 }
                 catch (Exception b)

@@ -1,18 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
 using System.Data.SqlClient;
-using System.Diagnostics;
+using System;
 
 namespace BagRoom
 {
@@ -28,19 +16,46 @@ namespace BagRoom
 
         private void insertPlayer(object sender, RoutedEventArgs e)
         {
+
             string firstName = fName.Text;
             string lastName = lName.Text;
             int bagNumber;
             int.TryParse(bagNum.Text, out bagNumber);
 
-            player newPlayer = new player();
+            /*SqlCommand cmd = new SqlCommand("INSERT INTO players(first_name, last_name, bag_id) " +
+                                            "VALUES('"+ firstName +"', '"+ lastName +"', '"+ bagNumber +"')", conn);*/
+            using (SqlConnection conn = new SqlConnection("Data Source=DESKTOP-4TJATUJ\\SQLEXPRESS;Initial Catalog=bagRoom;Integrated Security=True"))
+            {
+                try
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand("INSERT INTO players(first_name, last_name, bag_id)" +
+                                                       "VALUES (@firstName, @lastName, @bagID)", conn))
+                    {
 
-            newPlayer.first_name = firstName;
-            newPlayer.last_name = lastName;
-            newPlayer.bag_id = bagNumber;
+                        cmd.Parameters.AddWithValue("@firstName", firstName);
+                        cmd.Parameters.AddWithValue("@lastName", lastName);
+                        cmd.Parameters.AddWithValue("@bagID", bagNumber);
 
-            
+
+
+                        cmd.ExecuteNonQuery();
+                        this.Close();
+                    }
+                }
+                catch (Exception b)
+                {
+                    Console.WriteLine(b.Message);
+                }
+                finally
+                {
+                    conn.Close();
+                }
                 
+            }
         }
     }
+
 }
+    
+

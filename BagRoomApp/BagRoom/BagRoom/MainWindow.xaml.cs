@@ -21,7 +21,7 @@ namespace BagRoom
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            using (SqlConnection conn = new SqlConnection("Data Source=DESKTOP-4TJATUJ\\SQLEXPRESS;Initial Catalog=bagRoom;Integrated Security=True"))
+            using (SqlConnection conn = new SqlConnection("ConnectionString"))
             {
                 try
                 {
@@ -76,7 +76,7 @@ namespace BagRoom
         private void showTable(object sender, RoutedEventArgs e)
         {
 
-            using (SqlConnection conn = new SqlConnection("Data Source=DESKTOP-4TJATUJ\\SQLEXPRESS;Initial Catalog=bagRoom;Integrated Security=True"))
+            using (SqlConnection conn = new SqlConnection("ConnectionString"))
             {
                 try
                 {
@@ -109,7 +109,7 @@ namespace BagRoom
 
         private void DeleteRow(object sender, RoutedEventArgs e)
         {
-            using (SqlConnection conn = new SqlConnection("Data Source=DESKTOP-4TJATUJ\\SQLEXPRESS;Initial Catalog=bagRoom;Integrated Security=True"))
+            using (SqlConnection conn = new SqlConnection("ConnectionString"))
             {
                 DataRowView row = (DataRowView)bagRoomGrid.SelectedItem;
                 try
@@ -125,8 +125,8 @@ namespace BagRoom
                 finally
                 {
                     conn.Close();
+                    row.Delete();
                 }
-                row.Delete();
             }
         }
     }
